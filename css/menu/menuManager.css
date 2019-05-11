@@ -1,0 +1,169 @@
+[v-cloak]{
+    display: none;
+}
+
+/*顶部导航栏面包屑-自定义设置*/
+.layui-breadcrumb a {
+    visibility: visible;
+}
+/*面包屑样式*/
+.weadmin-nav{
+    margin-top:10px;
+}
+.layui-row{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.weadmin-nav .layui-icon {
+    font-size: 30px !important;
+    line-height: 25px;
+}
+
+
+/*menu*/
+.personMenu{
+    padding:0px 20px;
+}
+#menu .layui-row{
+
+}
+.zw{
+    width:100px;
+    height: 100px;
+}
+.h4, h4 {
+    text-align: center !important;
+}
+
+/*菜单ITEM*/
+.panel-heading{
+    /*background-color: rgba(51,172,160,1) !important;*/
+}
+.menu-item li{
+    background-color: rgba(100,100,100,0.1);
+    margin:5px;
+    height: 50px;
+    border-radius: 5px;
+
+    text-align: center;
+    line-height: 50px;
+    font-size: 15px;
+
+    color:rgba(50,50,50,1);
+}
+
+/*菜单详情模态框*/
+.menu-detail{
+    height: 200px;
+
+    display: none;
+}
+
+.menu-detail input[type='text']{
+    width:80%;
+    margin:10px auto;
+}
+.menu-detail input[type='text']:first-child{
+    margin-top:20px;
+}
+.menu-detail .submit,.menu-add .submit{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+/*添加菜单面板*/
+.menu-add{
+    height: 200px;
+    display: none;
+}
+.menu-add input[type='text']{
+    width:80%;
+    margin:10px auto;
+}
+.menu-add input[type='text']:first-child{
+    margin-top:20px;
+}
+
+
+/*拖动时取消掉原控件*/
+.sortable-ghost {
+    opacity: 0;
+}
+
+/*删除按钮*/
+.menu-item li{
+    position: relative;
+}
+.item-del,.menu-del,.menu-config,.menu-config-del{
+    width:30px;
+    height: 30px;
+    background-color: rgba(100,100,100,0.1);
+
+    position: absolute;
+    right: 10px;
+    top:10px;
+
+    border-radius: 50%;
+    color:white;
+}
+.menu-config,.menu-config-del{
+    top:3px;
+    left: 10px;
+    border-radius: 10px;
+    background-color: rgba(100,100,100,0.1);
+}
+.menu-config-del{
+    left: 50px;
+}
+.menu-del{
+    top:3px;
+    right: 10px;
+    border-radius: 10px;
+    background-color: rgba(100,100,100,0.1);
+}
+.item-del span,.menu-del span,.menu-config span,.menu-config-del span{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:-9px;
+    margin:0 auto;
+}
+.menu-del span,.menu-config span,.menu-config-del span{
+    top:5px;
+    font-size: 20px;
+    color: white;
+    font-weight: lighter;
+    z-index: 1000;
+}
+.menu-config span{
+    font-weight: bold;
+}
+.panel-heading{
+    position: relative;
+}
+.showDel{
+    display:block;
+}
+.hideDel{
+    display: none;
+}
+
+/*添加父级菜单*/
+.add-parent-menu{
+    width:50px;
+    height: 50px;
+    /*background-color: red;*/
+    margin:0 auto;
+
+
+}
+.layui-icon-add-circle-fine{
+    font-size: 48px;
+    color: #009788;
+    font-weight: bold;
+}
+.add-parent-menu :hover{
+    background-color: rgba(100,100,100,0.1);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(100,100,100,0.25);
+}

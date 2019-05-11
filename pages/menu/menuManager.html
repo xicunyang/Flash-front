@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单管理页面</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="shortcut icon" href="/Flash/favicon.ico" type="image/x-icon"/>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Flash/static/css/font.css">
+    <link rel="stylesheet" href="/Flash/static/css/weadmin.css">
+    <link rel="stylesheet" href="/Flash/css/menu/menuManager.css">
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="weadmin-nav">
+      <span class="layui-breadcrumb">
+        <a>菜单管理</a>
+        <a>
+          <cite>&nbsp;/&nbsp;菜单管理</cite>
+        </a>
+      </span>
+    <a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#x1002;</i></a>
+</div>
+
+<div class="weadmin-body" id="menu" v-cloak>
+    <!--菜单列表展示-->
+    <div class="layui-row">
+        <div class="layui-col-md4 personMenu layui-col-md-offset1">
+            <div class="panel-group" id="panelGroupTea">
+                <div class="panel panel-default" v-for="(teaMenu,index) in menuListTea" :id="teaMenu.id" >
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion"
+                         :href="'.'+className+index"
+                         @mouseover="hoverId=teaMenu.id"
+                         @mouseout="hoverId=-1">
+                        <h4 class="panel-title">
+                            <a style="text-decoration:none;cursor: pointer">
+                                <div class="menu-config"
+                                     :class="hoverId === teaMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="showItemDetail(teaMenu)">
+                                    <span class="layui-icon layui-icon-set-sm"></span>
+                                </div>
+                                <div class="menu-config-del"
+                                     :class="hoverId === teaMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="delMenuClick(teaMenu.id)">
+                                    <!--删除按钮标记-->
+                                    <span class="layui-icon layui-icon-close"></span>
+                                </div>
+                                <span class="layui-icon" :class="teaMenu.parentMenuIcon"></span>
+                                {{teaMenu.parentMenuName}}
+                                <div class="menu-del"
+                                     :class="hoverId === teaMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="addItemMenu(teaMenu,2)">
+                                    <span class="layui-icon layui-icon-add-1"></span>
+                                </div>
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div class="panel-collapse in collapse" :class="className+index" :class="openCollapseData">
+                        <div class="panel-body drag">
+                            <ul class="menu-item" :id="idNameTea+index">
+                                <li v-for="(menu,indexItem) in teaMenu.menuItems" @dblclick="showItemDetail(menu)" :id="menu.id" @mouseover="hoverId=menu.id" @mouseout="hoverId=-1">
+                                    <!--<span class="layui-icon" :class="menu.menuIcon"></span>-->
+                                    {{menu.menuName}}
+                                    <div class="item-del"
+                                         :class="hoverId === menu.id ? 'showDel':'hideDel'"
+                                        @click="delMenuClick(menu.id)">
+                                        <!--删除按钮标记-->
+                                        <span class="layui-icon layui-icon-close"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add-parent-menu" @click="addItemMenu(null,2)">
+                <span class="layui-icon layui-icon-add-circle-fine"></span>
+            </div>
+        </div>
+        <div class="layui-col-md2">
+            <div class="zw"></div>
+        </div>
+        <div class="layui-col-md4 personMenu">
+            <div class="panel-group" id="panelGroupStu">
+                <div class="panel panel-default" v-for="(stuMenu,index) in menuListStu" :id="stuMenu.id" >
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion"
+                         :href="'.'+className+index"
+                         @mouseover="hoverId=stuMenu.id"
+                         @mouseout="hoverId=-1">
+                        <h4 class="panel-title">
+                            <a style="text-decoration:none;cursor: pointer">
+                                <div class="menu-config"
+                                     :class="hoverId === stuMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="showItemDetail(stuMenu)">
+                                    <span class="layui-icon layui-icon-set-sm"></span>
+                                </div>
+                                <div class="menu-config-del"
+                                     :class="hoverId === stuMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="delMenuClick(stuMenu.id)">
+                                    <!--删除按钮标记-->
+                                    <span class="layui-icon layui-icon-close"></span>
+                                </div>
+                                <span class="layui-icon" :class="stuMenu.parentMenuIcon"></span>
+                                {{stuMenu.parentMenuName}}
+                                <div class="menu-del"
+                                     :class="hoverId === stuMenu.id ? 'showDel':'hideDel'"
+                                     @click.stop="addItemMenu(stuMenu,1)">
+                                    <span class="layui-icon layui-icon-add-1"></span>
+                                </div>
+                            </a>
+                        </h4>
+
+                    </div>
+                    <div class="panel-collapse in collapse" :class="className+index" :class="openCollapseData">
+                        <div class="panel-body drag">
+                            <ul class="menu-item" :id="idNameStu+index">
+                                <li v-for="(menu,indexItem) in stuMenu.menuItems" @dblclick="showItemDetail(menu)" :id="menu.id" @mouseover="hoverId=menu.id" @mouseout="hoverId=-1">
+                                    <!--<span class="layui-icon" :class="menu.menuIcon"></span>-->
+                                    {{menu.menuName}}
+                                    <div class="item-del"
+                                         :class="hoverId === menu.id ? 'showDel':'hideDel'"
+                                         @click="delMenuClick(menu.id)">
+                                        <!--删除按钮标记-->
+                                        <span class="layui-icon layui-icon-close"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="add-parent-menu" @click="addItemMenu(null,1)">
+                <span class="layui-icon layui-icon-add-circle-fine"></span>
+            </div>
+        </div>
+    </div>
+
+    <!--菜单详情添加-->
+    <div class="menu-add">
+        <input type="text" v-model="addMenuInfo.menuName" required lay-verify="required" placeholder="请输入菜单标题" autocomplete="off"
+               class="layui-input">
+        <input type="text" v-model="addMenuInfo.menuUrl" required lay-verify="required" placeholder="请输入菜单地址" autocomplete="off"
+               class="layui-input">
+        <input type="text" v-model="addMenuInfo.menuIcon" required lay-verify="required" placeholder="请输入菜单图标class名称" autocomplete="off"
+               class="layui-input">
+
+        <button class="layui-btn submit" @click="addMenuClickSubmit">保存</button>
+    </div>
+    <!--菜单详情修改-->
+    <div class="menu-detail">
+        <input type="text" v-model="detailMenuInfo.menuName" required lay-verify="required" placeholder="请输入菜单标题" autocomplete="off"
+               class="layui-input">
+        <input type="text" v-model="detailMenuInfo.menuUrl" required lay-verify="required" placeholder="请输入菜单地址" autocomplete="off"
+               class="layui-input">
+        <input type="text" v-model="detailMenuInfo.menuIcon" required lay-verify="required" placeholder="请输入菜单地址" autocomplete="off"
+               class="layui-input">
+
+        <button class="layui-btn submit" @click="saveBtnSubmit">保存</button>
+    </div>
+</div>
+
+
+</body>
+<!--拖动控件-->
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+
+<script type="text/javascript" src="/Flash/lib/layui/layui.js" charset="utf-8"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>-->
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="/Flash/utils/url.js"></script>
+<script src="/Flash/lib/vue/vue.js"></script>
+<script src="/Flash/lib/vue/vue-resourse.js"></script>
+<script src="/Flash/lib/sort/Sortable.js"></script>
+<script src="../../js/menu/menuManager.js"></script>
+</html>
+
+
+
+

@@ -1,0 +1,18 @@
+[
+  {
+    "pMenuName": "菜单管理",
+    "pIcon": "layui-icon-rate-solid",
+    "menuItems": [
+      {
+        "itemName":"学生菜单管理",
+        "itemIcon": "layui-icon-rate-solid",
+        "itemHref": "pages/menu/menuManager.html?identifier=1"
+      },
+      {
+        "itemName":"教师菜单管理",
+        "itemIcon": "layui-icon-rate-solid",
+        "itemHref": "pages/menu/menuManager.html?identifier=2"
+      }
+    ]
+  }
+]

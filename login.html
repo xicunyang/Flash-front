@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>管理员登录-Flash</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./static/css/font.css">
+	<link rel="stylesheet" href="./static/css/weadmin.css">
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<body class="login-bg">
+    
+    <div class="login" id="login">
+        <div class="message">智慧课堂-管理员登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <form method="post" class="layui-form" >
+            <input v-model="user_name" placeholder="用户名"  type="text" lay-verify="required" >
+            <hr class="hr15">
+            <input v-model="user_pwd" lay-verify="required" placeholder="密码"  type="password">
+            <hr class="hr15">
+            <input @click="loginClick" value="登录" lay-submit lay-filter="login" style="width:100%;" type="button">
+            <hr class="hr20" >
+        </form>
+    </div>
+
+
+    <!-- 底部结束 -->
+</body>
+<script src="https://cdn.bootcss.com/vue/2.6.8/vue.js"></script>
+<script src="/Flash/utils/url.js"></script>
+<script type="text/javascript">
+
+    layui.use(['form'], function(){
+        // 使用VUE
+        var vm = new Vue({
+            el:"#login",
+            data:{
+                user_name:"",
+                user_pwd:""
+            },
+            methods:{
+                loginClick(){
+                    window.location = "index.html";
+
+
+                    return false;
+                }
+            }
+        });
+    });
+
+
+
+
+</script>
+</html>
